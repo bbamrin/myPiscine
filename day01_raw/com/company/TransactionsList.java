@@ -1,0 +1,9 @@
+package com.company;
+
+import java.util.UUID;
+
+public interface TransactionsList {
+	void addTransaction(Transaction transaction);
+	void removeTransaction(UUID uuid);
+	Transaction[] toArray();
+}
