@@ -1,4 +1,3 @@
-package com.company;
 
 import java.util.UUID;
 
@@ -36,23 +35,32 @@ public class TransactionsLinkedList implements TransactionsList{
 	@Override
 	public void removeTransaction(UUID uuid) {
 		TransactionListItem tmp;
+		Integer deletionCount;
 
+		deletionCount = 0;
 		tmp = this.listStart;
 		while (tmp != null)
 		{
 			if (tmp.getData().getIdentifier().compareTo(uuid) == 0)
 			{
+				if (tmp.equals(this.listStart))
+					this.listStart = tmp.getNext();
+				if (tmp.equals(this.listEnd))
+					this.listEnd = tmp.getPrevious();
 				if (tmp.getPrevious() != null)
 					tmp.getPrevious().setNext(tmp.getNext());
 				if (tmp.getNext() != null)
 					tmp.getNext().setPrevious(tmp.getPrevious());
 				size--;
+				deletionCount++;
 			}
 			tmp = tmp.getNext();
 		}
-		throw new TransactionNotFoundException("transaction with given id is not found");
+		if (deletionCount == 0)
+			throw new TransactionNotFoundException("transaction with given id is not found");
 	}
 
+	static int test = 0;
 	@Override
 	public Transaction[] toArray() {
 		Transaction transactionArray[];
@@ -64,9 +72,11 @@ public class TransactionsLinkedList implements TransactionsList{
 		transactionArray = new Transaction[size];
 		while (tmp != null)
 		{
-			transactionArray[i++] = tmp.getData();
+			transactionArray[i] = tmp.getData();
 			tmp = tmp.getNext();
+			i++;
 		}
+		test++;
 		return transactionArray;
 	}
 }

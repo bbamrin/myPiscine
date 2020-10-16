@@ -1,27 +1,41 @@
+
 public class User {
 	private Integer identifier;
 	private String  name;
 	private Integer balance;
 
-	public User(Integer identifier, String name, Integer balance)
+
+
+	private TransactionsList transactionsList;
+
+	public User(String name, Integer balance)
 	{
 		this.identifier = identifier;
+		transactionsList = new TransactionsLinkedList();
 		this.setBalance(balance);
 		this.name = name;
-	}
-
-	public Integer getIdentifier() {
-		return identifier;
+		this.identifier = UserIdsGenerator.getInstance().generateId();
 	}
 
 	public void setIdentifier(Integer identifier) {
 		this.identifier = identifier;
 	}
 
+	public TransactionsList getTransactionsList() {
+		return transactionsList;
+	}
+
+	public void setTransactionsList(TransactionsList transactionsList) {
+		this.transactionsList = transactionsList;
+	}
+
+	public Integer getIdentifier() {
+		return identifier;
+	}
+
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}

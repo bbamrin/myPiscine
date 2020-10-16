@@ -1,4 +1,3 @@
-package com.company;
 
 public class UserIdsGenerator {
 	private static Integer lastId;

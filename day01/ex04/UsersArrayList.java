@@ -31,10 +31,10 @@ public class UsersArrayList implements UserList {
 
 		while (++i <= lastUserIndex)
 		{
-			if (this.userArray[i].getIdentifier() == id)
+			if (this.userArray[i] != null && this.userArray[i].getIdentifier() == id)
 				return this.userArray[i];
 		}
-		throw new UserNotFoundException("User with given id not found");
+		throw new UserNotFoundException("User with given id is not found");
 	}
 
 	@Override

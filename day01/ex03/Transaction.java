@@ -1,4 +1,3 @@
-package com.company;
 
 import java.util.UUID;
 
@@ -8,12 +7,10 @@ public class Transaction {
 		CREDIT
 	}
 
-	UUID identifier;
-	User recipient;
-	User sender;
-
-
-
+	private UUID identifier;
+	private User recipient;
+	private User sender;
+	private Transaction pair;
 	Integer transferAmount;
 
 	public TransferCategory getCategory() {
@@ -27,9 +24,18 @@ public class Transaction {
 		this.recipient = recipient;
 		this.sender = sender;
 		this.category = category;
+		this.setIdentifier(identifier);
 		this.setTransferAmount(transferAmount);
+		this.pair = null;
 	}
 
+	public Transaction getPair() {
+		return pair;
+	}
+
+	public void setPair(Transaction pair) {
+		this.pair = pair;
+	}
 	public Integer getTransferAmount() {
 		return transferAmount;
 	}
@@ -37,7 +43,7 @@ public class Transaction {
 	public void setTransferAmount(Integer transferAmount) {
 		if (this.category == TransferCategory.CREDIT && transferAmount < 0)
 			this.transferAmount = transferAmount;
-		else if (this.category == TransferCategory.CREDIT && transferAmount > 0)
+		else if (this.category == TransferCategory.DEBIT && transferAmount > 0)
 			this.transferAmount = transferAmount;
 		else
 			this.transferAmount = null;

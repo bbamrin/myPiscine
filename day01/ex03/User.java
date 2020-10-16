@@ -1,9 +1,11 @@
-package com.company;
 
 public class User {
 	private Integer identifier;
 	private String  name;
 	private Integer balance;
+
+
+
 	private TransactionsList transactionsList;
 
 	public User(String name, Integer balance)
@@ -15,6 +17,18 @@ public class User {
 		this.identifier = UserIdsGenerator.getInstance().generateId();
 	}
 
+	public void setIdentifier(Integer identifier) {
+		this.identifier = identifier;
+	}
+
+	public TransactionsList getTransactionsList() {
+		return transactionsList;
+	}
+
+	public void setTransactionsList(TransactionsList transactionsList) {
+		this.transactionsList = transactionsList;
+	}
+
 	public Integer getIdentifier() {
 		return identifier;
 	}
@@ -22,7 +36,6 @@ public class User {
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}

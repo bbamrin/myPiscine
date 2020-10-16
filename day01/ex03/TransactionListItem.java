@@ -1,4 +1,3 @@
-package com.company;
 
 public class TransactionListItem {
 	private TransactionListItem next;
